@@ -176,7 +176,24 @@ class LiveStreamViewManager(
 
 
     init {
+        scope.launch {
+            streamer.throwableFlow.collect { throwable ->
+                if (throwable != null) {
+                    Log.e("LiveStreamViewManager stopStream", "${throwable.message}")
+                    onGenericError(throwable as? Exception ?: RuntimeException(throwable))
+                }
+            }
+        }
 
+        scope.launch {
+            streamer.isStreamingFlow.collect { throwable ->
+                if (throwable) {
+                    onConnectionSucceeded()
+                } else {
+                    onDisconnected()
+                }
+            }
+        }
     }
 
     fun dispose() {
