@@ -199,7 +199,7 @@ api.video Flutter live stream library is using external native libraries:
 | Plugin     | README       |
 |------------|--------------|
 | StreamPack | [StreamPack] |
-| HaishinKit | [HaishinKit] |
+| HaishinKit | [[HaishinKit]()] |
 
 ## FAQ
 
