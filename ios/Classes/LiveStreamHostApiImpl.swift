@@ -15,7 +15,7 @@ class LiveStreamHostApiImpl: LiveStreamHostApi {
     func create() throws -> Int64 {
         flutterView = try instanceManager.create(textureRegistry: textureRegistry)
         flutterView?.delegate = self
-        return flutterView?.textureId
+        return flutterView?.textureId ??0
     }
 
     func dispose() throws {
@@ -55,7 +55,7 @@ class LiveStreamHostApiImpl: LiveStreamHostApi {
     }
 
     func getCameraId() throws -> String {
-        flutterView?.camera?.uniqueID
+        flutterView?.camera?.uniqueID ?? ""
     }
 
     func setCameraId(cameraId: String, completion: @escaping (Result<Void, Error>) -> Void) {
