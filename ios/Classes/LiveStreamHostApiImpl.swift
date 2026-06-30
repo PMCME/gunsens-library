@@ -14,8 +14,8 @@ class LiveStreamHostApiImpl: LiveStreamHostApi {
 
     func create() throws -> Int64 {
         flutterView = try instanceManager.create(textureRegistry: textureRegistry)
-        flutterView!.delegate = self
-        return flutterView!.textureId
+        flutterView?.delegate = self
+        return flutterView?.textureId
     }
 
     func dispose() throws {
@@ -24,30 +24,30 @@ class LiveStreamHostApiImpl: LiveStreamHostApi {
     }
 
     func setVideoConfig(videoConfig: NativeVideoConfig, completion: @escaping (Result<Void, any Error>) -> Void) {
-        flutterView!.videoConfig = videoConfig.toVideoConfig()
+        flutterView?.videoConfig = videoConfig.toVideoConfig()
         completion(.success(()))
     }
 
     func setAudioConfig(audioConfig: NativeAudioConfig, completion: @escaping (Result<Void, any Error>) -> Void) {
-        flutterView!.audioConfig = audioConfig.toAudioConfig()
+        flutterView?.audioConfig = audioConfig.toAudioConfig()
         completion(.success(()))
     }
 
     func startStreaming(streamKey: String, url: String) throws {
-        try flutterView!.startStreaming(streamKey: streamKey, url: url)
+        try flutterView?.startStreaming(streamKey: streamKey, url: url)
     }
 
     func stopStreaming() throws {
-        flutterView!.stopStreaming()
+        flutterView?.stopStreaming()
     }
 
     func startPreview(completion: @escaping (Result<Void, any Error>) -> Void) {
-        flutterView!.startPreview()
+        flutterView?.startPreview()
         completion(.success(()))
     }
 
     func stopPreview() throws {
-        flutterView!.stopPreview()
+        flutterView?.stopPreview()
     }
 
     func getIsStreaming() throws -> Bool {
@@ -55,11 +55,11 @@ class LiveStreamHostApiImpl: LiveStreamHostApi {
     }
 
     func getCameraId() throws -> String {
-        flutterView!.camera!.uniqueID
+        flutterView?.camera?.uniqueID
     }
 
     func setCameraId(cameraId: String, completion: @escaping (Result<Void, Error>) -> Void) {
-        flutterView!.camera = DeviceProvider.getCamera(uniqueID: cameraId)
+        flutterView?.camera = DeviceProvider.getCamera(uniqueID: cameraId)
         completion(.success(()))
     }
 
@@ -68,7 +68,7 @@ class LiveStreamHostApiImpl: LiveStreamHostApi {
     }
 
     func setIsMuted(isMuted: Bool) throws {
-        flutterView!.isMuted = isMuted
+        flutterView?.isMuted = isMuted
     }
 
     func getVideoResolution() throws -> NativeResolution? {
